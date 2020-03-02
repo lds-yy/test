@@ -1,3 +1,0 @@
-println();
-print();
-println();
