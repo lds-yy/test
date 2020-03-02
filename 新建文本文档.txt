@@ -1,0 +1,72 @@
+create table users(
+	uid int auto_increment primary key comment'用户编号',
+	username varchar(20) not null comment '登录账号',
+	password varchar(50) not null comment '登录密码',
+	nickname varchar(50) comment'昵称',
+	age int comment'用户年龄',
+	gender varchar(5) comment'用户性别',
+	phone varchar(13) comment'联系方式',
+	createTime datetime comment'账户创建时间',
+	updateTime datetime comment'账户最后修改时间',
+	lastLogin datetime comment'账号最后一次登录时间',
+	userStatus INT comment'用户账号的状态 0 正常 1 锁定 2 删除',
+	remark text comment '备注'
+);
+insert into user values (null,'aaa','111','李三');
+insert into user values (null,'bbb','222','李三');
+insert into users values (null,'xiaomu','xiaomu','小兔',null,null,null,'2017-02-13 00:00:00',null,null,0,null);
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.6</version>
+        </dependency>　
+
+
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.41</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>　
+
+create table address(
+uid int auto_increment primary key comment'主键',
+userid int comment'外键，关联用户表主键',
+defaultAddr boolean comment'是否默认地址',
+nation varchar(20) comment'国家',
+province varchar(20) comment'省去',
+city varchar(20) comment'市区',
+country varchar(20) comment'县区',
+street varchar(100) comment'街道',
+remark text comment'备注'
+) charset"UTF8";
+
+alter table address add foreign key (userid) references users(uid);
+
+insert into address (userid ,defaultAddr ,nation ,province ,city ,country ,street ,remark )
+values (1,true,"中国","河南","郑州","金木区","二环路","瑞隆城7号楼601"),
+(1,true,"中国","广东","潮南","汕头区","一环路","瑞隆城7号楼201"),
+(1,true,"中国","河南","逼州","东木区","三环路","瑞隆城7号楼301");
